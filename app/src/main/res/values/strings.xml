@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">CNNews</string>
+    <string name="menu_text_home">Home</string>
+    <string name="menu_text_bookmarks">Bookmarks</string>
 </resources>
