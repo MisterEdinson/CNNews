@@ -1,5 +1,6 @@
 package com.example.cnnews.data.local.dao.model
 
+import android.os.Parcelable
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import kotlinx.android.parcel.Parcelize
@@ -17,4 +18,4 @@ data class NewsBookmarkEntity(
     var urlToImage: String? = null,
     var content: String? = null,
     var publishedAt: String? = null,
-)
+) : Parcelable

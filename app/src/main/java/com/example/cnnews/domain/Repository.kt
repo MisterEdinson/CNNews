@@ -1,11 +1,13 @@
 package com.example.cnnews.domain
 
-import com.example.cnnews.data.network.RetrofitInstance
+import com.example.cnnews.data.network.SimpleRetro
 import com.example.cnnews.data.network.model.ResponseCountry
+import javax.inject.Inject
 
-class Repository{
-
+class Repository @Inject constructor(
+    private val simpleRetro: SimpleRetro
+){
     suspend fun getNews() : ResponseCountry{
-        return RetrofitInstance.api.getNewsCountryDefault()
+        return simpleRetro.getNewsCountryDefault()
     }
 }
