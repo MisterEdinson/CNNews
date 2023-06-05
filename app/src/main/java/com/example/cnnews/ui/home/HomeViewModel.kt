@@ -21,9 +21,16 @@ class HomeViewModel @Inject constructor(
         getNews()
     }
 
-    private fun getNews() {
+    fun getNews() {
         viewModelScope.launch {
             val responce = repository.getNews()
+            dataList.value = responce
+        }
+    }
+
+    fun searchNews(search: String) {
+        viewModelScope.launch {
+            val responce = repository.searchNews(search)
             dataList.value = responce
         }
     }

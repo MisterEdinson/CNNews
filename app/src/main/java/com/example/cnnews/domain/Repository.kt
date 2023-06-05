@@ -10,4 +10,7 @@ class Repository @Inject constructor(
     suspend fun getNews() : ResponseCountry{
         return simpleRetro.getNewsCountryDefault()
     }
+    suspend fun searchNews(search:String) : ResponseCountry{
+        return simpleRetro.getSearchNewsCountry(search)
+    }
 }
