@@ -6,11 +6,12 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.cnnews.R
+import com.example.cnnews.data.local.dao.model.NewsBookmarkEntity
 import com.example.cnnews.data.network.model.ArticlesItem
 import kotlinx.android.synthetic.main.item_news.view.*
 
 class HomeNewsAdapter : RecyclerView.Adapter<HomeNewsAdapter.NewsViewHolder>() {
-    var listNews = emptyList<ArticlesItem>()
+    var listNews = emptyList<NewsBookmarkEntity>()
 
     class NewsViewHolder(view: View) : RecyclerView.ViewHolder(view)
 
@@ -27,6 +28,7 @@ class HomeNewsAdapter : RecyclerView.Adapter<HomeNewsAdapter.NewsViewHolder>() {
             tvDescNews.text = item.description
             tvAuthNews.text = item.author
             Glide.with(this).load(item.urlToImage).into(imgNews)
+
         }
     }
 
@@ -34,7 +36,7 @@ class HomeNewsAdapter : RecyclerView.Adapter<HomeNewsAdapter.NewsViewHolder>() {
         return listNews.size
     }
 
-    fun setList(list: List<ArticlesItem>) {
+    fun setList(list: List<NewsBookmarkEntity>) {
         listNews = list
         notifyDataSetChanged()
     }

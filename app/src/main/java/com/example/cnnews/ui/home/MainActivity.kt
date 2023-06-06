@@ -28,9 +28,7 @@ class MainActivity : AppCompatActivity() {
         val searchText = findViewById<EditText>(R.id.etSearchNews)
         initAdapter()
         viewModel.dataList.observe(this) {
-            it.articles.let { list ->
-                newsAdapter?.setList(list as List<ArticlesItem>)
-            }
+             newsAdapter?.setList(it)
         }
         imgSearchClose.setOnClickListener {
             etSearchNews.setText("")

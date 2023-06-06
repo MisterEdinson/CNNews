@@ -3,6 +3,7 @@ package com.example.cnnews.ui.home
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.cnnews.data.local.dao.model.NewsBookmarkEntity
 import com.example.cnnews.data.network.model.ResponseCountry
 import com.example.cnnews.domain.Repository
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -15,7 +16,7 @@ class HomeViewModel @Inject constructor(
     private val repository: Repository
 ) : ViewModel() {
 
-    val dataList: MutableLiveData<ResponseCountry> = MutableLiveData()
+    val dataList: MutableLiveData<List<NewsBookmarkEntity>> = MutableLiveData()
 
     init {
         getNews()

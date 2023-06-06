@@ -1,5 +1,6 @@
 package com.example.cnnews.data.network
 
+import com.example.cnnews.data.network.model.ArticlesItem
 import com.example.cnnews.data.network.model.ResponseCountry
 import com.example.cnnews.domain.utils.Constants.Companion.API_KEY
 import retrofit2.http.GET
