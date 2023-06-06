@@ -3,6 +3,7 @@ package com.example.cnnews.ui.home
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.cnnews.data.local.dao.NewsBookmarkDao
 import com.example.cnnews.data.local.dao.model.NewsBookmarkEntity
 import com.example.cnnews.data.network.model.ResponseCountry
 import com.example.cnnews.domain.Repository
@@ -33,6 +34,12 @@ class HomeViewModel @Inject constructor(
         viewModelScope.launch {
             val responce = repository.searchNews(search)
             dataList.value = responce
+        }
+    }
+
+    fun addFavorite(favorite : NewsBookmarkEntity){
+        viewModelScope.launch {
+            repository.addFavorite(favorite)
         }
     }
 }

@@ -7,10 +7,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.cnnews.R
 import com.example.cnnews.data.local.dao.model.NewsBookmarkEntity
-import com.example.cnnews.data.network.model.ArticlesItem
 import kotlinx.android.synthetic.main.item_news.view.*
 
-class HomeNewsAdapter : RecyclerView.Adapter<HomeNewsAdapter.NewsViewHolder>() {
+class HomeNewsAdapter(val addFavorite: (NewsBookmarkEntity) -> Unit) :
+    RecyclerView.Adapter<HomeNewsAdapter.NewsViewHolder>() {
     var listNews = emptyList<NewsBookmarkEntity>()
 
     class NewsViewHolder(view: View) : RecyclerView.ViewHolder(view)
@@ -29,6 +29,9 @@ class HomeNewsAdapter : RecyclerView.Adapter<HomeNewsAdapter.NewsViewHolder>() {
             tvAuthNews.text = item.author
             Glide.with(this).load(item.urlToImage).into(imgNews)
 
+            imgAddBookmardNews.setOnClickListener {
+                addFavorite(item)
+            }
         }
     }
 

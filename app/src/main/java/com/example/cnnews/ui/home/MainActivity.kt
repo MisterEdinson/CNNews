@@ -7,6 +7,7 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.addTextChangedListener
 import com.example.cnnews.R
+import com.example.cnnews.data.local.dao.model.NewsBookmarkEntity
 import com.example.cnnews.data.network.model.ArticlesItem
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_main.*
@@ -52,10 +53,16 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initAdapter() {
-        newsAdapter = HomeNewsAdapter()
+        newsAdapter = HomeNewsAdapter(
+            { favorite -> addFavorite(favorite)}
+        )
         rvNewsHome.apply {
             adapter = newsAdapter
         }
+    }
+
+    private fun addFavorite(favorite : NewsBookmarkEntity){
+        viewModel.addFavorite(favorite)
     }
 }
 

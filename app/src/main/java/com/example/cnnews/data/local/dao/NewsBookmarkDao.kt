@@ -8,8 +8,8 @@ interface NewsBookmarkDao {
     @Query("SELECT * FROM news_bookmark ORDER BY publishedAt DESC")
     suspend fun getAllNewsBookmark(): List<NewsBookmarkEntity>
 
-//    @Insert(onConflict = OnConflictStrategy.REPLACE)
-//    suspend fun addNewBookmark() : List<NewsBookmarkEntity>
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun addNewBookmark(insert: NewsBookmarkEntity)
 
     @Delete
     suspend fun delNewBookmark(newsBookmark: NewsBookmarkEntity)
