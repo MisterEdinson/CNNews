@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:background="#D3EFFF"
+    android:paddingBottom="20dp"
+    android:layout_marginBottom="16dp"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/imgNews"
+        android:layout_width="wrap_content"
+        android:layout_height="240dp"
+        android:scaleType="centerCrop"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:contentDescription="@string/img_desc"
+        app:srcCompat="@drawable/image" />
+
+    <TextView
+        android:id="@+id/tvTitleNews"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:textColor="#0F0F0F"
+        android:textSize="16sp"
+        android:text="@string/text_title_news"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imgNews" />
+
+    <TextView
+        android:id="@+id/tvDescNews"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:textSize="12sp"
+        android:textColor="#0F0F0F"
+        android:text="@string/text_desc_news"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvTitleNews" />
+
+    <TextView
+        android:id="@+id/tvAuthNews"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="12dp"
+        android:textSize="11sp"
+        android:textColor="#898989"
+        android:text="@string/text_author_news"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvDescNews" />
+
+    <ImageView
+        android:id="@+id/imgOpenNews"
+        android:layout_width="14dp"
+        android:layout_height="8dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintBottom_toBottomOf="@+id/tvAuthNews"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tvAuthNews"
+        android:contentDescription="@string/img_desc"
+        app:srcCompat="@drawable/next" />
+
+    <ImageView
+        android:id="@+id/imgShareNews"
+        android:layout_width="24dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:contentDescription="@string/img_desc"
+        app:srcCompat="@drawable/share" />
+
+    <ImageView
+        android:id="@+id/imgAddBookmardNews"
+        android:layout_width="40dp"
+        android:layout_height="35dp"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintBottom_toBottomOf="@+id/imgShareNews"
+        app:layout_constraintEnd_toStartOf="@+id/imgShareNews"
+        app:layout_constraintTop_toTopOf="@+id/imgShareNews"
+        android:contentDescription="@string/img_desc"
+        app:srcCompat="@drawable/bookmark" />
+</androidx.constraintlayout.widget.ConstraintLayout>
