@@ -22,6 +22,9 @@ class Repository @Inject constructor(
         val searchHostNews = ModelMappingUseCase().converterModel(search)
         return searchHostNews
     }
+    suspend fun getAllFavorite(){
+        localDao.getAllNewsBookmark()
+    }
     suspend fun addFavorite(add:NewsBookmarkEntity){
         localDao.addNewBookmark(add)
     }

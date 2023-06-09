@@ -42,4 +42,10 @@ class HomeViewModel @Inject constructor(
             repository.addFavorite(favorite)
         }
     }
+
+    fun getAllFavorite(){
+        viewModelScope.launch {
+            repository.getAllFavorite()
+        }
+    }
 }
