@@ -1,3 +1,17 @@
 <resources>
     <string name="app_name">CNNews</string>
+    <string name="logo_n">N</string>
+    <string name="logo_text">NEWS APP</string>
+    <string name="text_search">Search</string>
+    <string name="img_desc">img_desc</string>
+    <string name="text_title_news">EU and more than 40 countries urge Russia to withdraw forces from Ukrainian nuclear power plant</string>
+    <string name="text_desc_news">
+        A joint statement from the European Union and 42 countries including the United States has called on Russia to immediately withdraw its forces from
+    </string>
+    <string name="text_author_news">edition.cnn.com</string>
+    <string name="menu_text_home">Home</string>
+    <string name="menu_text_bookmarks">Bookmarks</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
 </resources>
