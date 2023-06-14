@@ -22,10 +22,22 @@ class Repository @Inject constructor(
         val searchHostNews = ModelMappingUseCase().converterModel(search)
         return searchHostNews
     }
-    suspend fun getAllFavorite(){
-        localDao.getAllNewsBookmark()
+
+    suspend fun getAllFavorite() : List<NewsBookmarkEntity>{
+        val bookmark = localDao.getAllNewsBookmark()
+        return bookmark
     }
+
+    suspend fun searchFavorite(string:String) : List<NewsBookmarkEntity>{
+        val arg = "%$string%"
+        val bookmark = localDao.search(arg)
+        return bookmark
+    }
+
     suspend fun addFavorite(add:NewsBookmarkEntity){
         localDao.addNewBookmark(add)
+    }
+    suspend fun delFavorite(del:NewsBookmarkEntity){
+        localDao.delNewBookmark(del)
     }
 }

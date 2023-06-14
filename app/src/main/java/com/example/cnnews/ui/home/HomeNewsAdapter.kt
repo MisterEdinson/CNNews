@@ -9,7 +9,7 @@ import com.example.cnnews.R
 import com.example.cnnews.data.local.dao.model.NewsBookmarkEntity
 import kotlinx.android.synthetic.main.item_news.view.*
 
-class HomeNewsAdapter(val addFavorite: (NewsBookmarkEntity) -> Unit) :
+class HomeNewsAdapter(val clickFavorite: (NewsBookmarkEntity) -> Unit) :
     RecyclerView.Adapter<HomeNewsAdapter.NewsViewHolder>() {
     var listNews = emptyList<NewsBookmarkEntity>()
 
@@ -30,7 +30,7 @@ class HomeNewsAdapter(val addFavorite: (NewsBookmarkEntity) -> Unit) :
             Glide.with(this).load(item.urlToImage).into(imgNews)
 
             imgAddBookmardNews.setOnClickListener {
-                addFavorite(item)
+                clickFavorite(item)
             }
         }
     }

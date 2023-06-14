@@ -1,4 +1,4 @@
-package com.example.cnnews.ui.home
+package com.example.cnnews.ui
 
 import android.os.Bundle
 import android.text.Editable
@@ -11,6 +11,8 @@ import androidx.fragment.app.Fragment
 import com.example.cnnews.R
 import com.example.cnnews.databinding.ActivityMainBinding
 import com.example.cnnews.ui.bokmark.BookmarkFragment
+import com.example.cnnews.ui.home.HomeFragment
+import com.example.cnnews.ui.home.HomeViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.coroutines.Job
@@ -20,8 +22,6 @@ import kotlinx.coroutines.launch
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
-    private val viewModel: HomeViewModel by viewModels()
-    private var job: Job? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,32 +38,12 @@ class MainActivity : AppCompatActivity() {
             }
             true
         }
-        val etSearchNews = findViewById<EditText>(R.id.etSearchNews)
-        imgSearchClose.setOnClickListener {
-            etSearchNews.setText("")
-        }
-        etSearchNews.addTextChangedListener {
-            searchEditText(it)
-        }
     }
     private fun replaceFragment(fragment: Fragment){
         val fragmentManager = supportFragmentManager
         val fragmentTransiting = fragmentManager.beginTransaction()
         fragmentTransiting.replace(R.id.fragmentContainerView,fragment)
         fragmentTransiting.commit()
-    }
-
-    private fun searchEditText(edit: Editable?) {
-        job?.cancel()
-        job = MainScope().launch {
-            edit.let {
-                if (it.toString().isEmpty()) {
-                    viewModel.getNews()
-                } else {
-                    viewModel.searchNews(it.toString())
-                }
-            }
-        }
     }
 }
 
