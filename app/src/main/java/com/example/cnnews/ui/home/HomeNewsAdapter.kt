@@ -1,5 +1,6 @@
 package com.example.cnnews.ui.home
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,7 +10,10 @@ import com.example.cnnews.R
 import com.example.cnnews.data.local.dao.model.NewsBookmarkEntity
 import kotlinx.android.synthetic.main.item_news.view.*
 
-class HomeNewsAdapter(val clickFavorite: (NewsBookmarkEntity) -> Unit) :
+class HomeNewsAdapter(
+    val clickFavorite: (NewsBookmarkEntity) -> Unit,
+    val openFragmentDetails: (NewsBookmarkEntity) -> Unit,
+) :
     RecyclerView.Adapter<HomeNewsAdapter.NewsViewHolder>() {
     var listNews = emptyList<NewsBookmarkEntity>()
 
@@ -29,7 +33,12 @@ class HomeNewsAdapter(val clickFavorite: (NewsBookmarkEntity) -> Unit) :
             tvAuthNews.text = item.author
             Glide.with(this).load(item.urlToImage).into(imgNews)
 
-            imgAddBookmardNews.setOnClickListener {
+            tvTitleNews.setOnClickListener{
+                Log.e("ok",item.author.toString())
+                openFragmentDetails(item)
+            }
+
+            imgAddBookmarkNews.setOnClickListener {
                 clickFavorite(item)
             }
         }

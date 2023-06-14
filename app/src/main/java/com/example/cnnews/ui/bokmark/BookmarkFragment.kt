@@ -8,9 +8,11 @@ import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.Toast
+import androidx.core.os.bundleOf
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.example.cnnews.R
 import com.example.cnnews.data.local.dao.model.NewsBookmarkEntity
 import com.example.cnnews.databinding.FragmentBookmarkBinding
@@ -59,7 +61,10 @@ class BookmarkFragment : Fragment() {
     }
 
     private fun initAdapter() {
-        newsAdapter = HomeNewsAdapter { favorite -> delFavorite(favorite) }
+        newsAdapter = HomeNewsAdapter(
+            { favorite -> delFavorite(favorite) },
+            { datails -> openDetails(datails) }
+        )
         binding.rvBookmarks.apply {
             adapter = newsAdapter
         }
@@ -67,8 +72,13 @@ class BookmarkFragment : Fragment() {
 
     private fun delFavorite(favorite: NewsBookmarkEntity) {
         viewModel.delFavorite(favorite)
-        Toast.makeText(context,"delete", Toast.LENGTH_SHORT).show()
+        Toast.makeText(context, "delete", Toast.LENGTH_SHORT).show()
         viewModel.getAllFavorite()
+    }
+
+    private fun openDetails(article: NewsBookmarkEntity) {
+        val bundle = bundleOf("article" to article)
+        findNavController().navigate(R.id.action_bookmarkFragment_to_articleFragment, bundle)
     }
 
     private fun search(edit: Editable?) {

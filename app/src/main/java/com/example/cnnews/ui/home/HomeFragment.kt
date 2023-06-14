@@ -8,10 +8,11 @@ import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.Toast
+import androidx.core.os.bundleOf
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.example.cnnews.R
 import com.example.cnnews.data.local.dao.model.NewsBookmarkEntity
 import com.example.cnnews.databinding.FragmentHomeBinding
@@ -25,7 +26,7 @@ class HomeFragment : Fragment() {
     private lateinit var binding: FragmentHomeBinding
     private lateinit var viewModel: HomeViewModel
     private var newsAdapter: HomeNewsAdapter? = null
-    private var job:Job? = null
+    private var job: Job? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -44,10 +45,10 @@ class HomeFragment : Fragment() {
 
         initAdapter()
         viewModel.getNews()
-        clearSearch?.setOnClickListener{
+        clearSearch?.setOnClickListener {
             editText?.setText("")
         }
-        editText?.addTextChangedListener{
+        editText?.addTextChangedListener {
             searchNet(it)
         }
         viewModel.dataListNet.observe(viewLifecycleOwner) {
@@ -56,24 +57,32 @@ class HomeFragment : Fragment() {
     }
 
     private fun initAdapter() {
-        newsAdapter = HomeNewsAdapter { favorite -> addFavorite(favorite) }
+        newsAdapter = HomeNewsAdapter(
+            { favorite -> addFavorite(favorite) },
+            { details -> openDetails(details) }
+        )
         binding.rvHome.apply {
             adapter = newsAdapter
         }
     }
 
-    private fun addFavorite(favorite : NewsBookmarkEntity){
+    private fun addFavorite(favorite: NewsBookmarkEntity) {
         viewModel.addFavorite(favorite)
-        Toast.makeText(context,"added", Toast.LENGTH_SHORT).show()
+        Toast.makeText(context, "added", Toast.LENGTH_SHORT).show()
     }
 
-    private fun searchNet(edit:Editable?){
+    private fun openDetails(article: NewsBookmarkEntity) {
+        val bundle = bundleOf("article" to article)
+        findNavController().navigate(R.id.action_homeFragment_to_articleFragment,bundle)
+    }
+
+    private fun searchNet(edit: Editable?) {
         job?.cancel()
         job = MainScope().launch {
             edit.let {
-                if(it.toString().isEmpty()){
+                if (it.toString().isEmpty()) {
                     viewModel.getNews()
-                }else{
+                } else {
                     viewModel.searchNewsNet(it.toString())
                 }
             }
